@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../Assets/css/style.css">
+    <title>Products</title>
+</head>
+
+<body>
+    <header>
+        <nav class="header-nav">
+            <div class="logo_header">
+                <img src="../Assets/Logo.png" class="img-logo-header">
+            </div>
+            <div class="header-div">
+                <a href="../Home/Index.html">Home</a>
+                <a href="Index.html">Products</a>
+                <a href="../Home/Contact.html">Contact</a>
+                <a href="../Home/About.html">About</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="btn-div">
+        <button class="btn-createnew"><a href="../Product/Create.html">Criar Novo</a></button>
+    </div>
+
+    <div class="div-box">
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Quantidade</th>
+                    <th>Preço</th>
+                    <th>Valor Total</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody id="product-list"></tbody>
+        </table>
+    </div>
+
+    <footer>
+        <h5>Projeto alunos UVA ©2024</h5>
+    </footer>
+
+    <script>
+        const loadProducts = async () => {
+            const response = await axios.get('http://192.168.15.165:5000/api/produto', { headers: { 'Access-Control-Allow-Origin': '*' } });
+            const products = response.data;
+            const productList = document.getElementById('product-list');
+            productList.innerHTML = '';
+            products.forEach(product => {
+                const total = product.quantidade * product.preco;
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                <td>${product.nome}</td>
+                <td>${product.quantidade}</td>
+                <td>R$ ${product.preco.toFixed(2)}</td>
+                <td>R$ ${total.toFixed(2)}</td>
+                <td>
+                    <button class="button-novos btn-editar"><a href="../Product/Edit.html?id=${product.id}">Editar</a></button>
+                    <button class="button-novos btn-deletar" onclick="deleteProduct(${product.id})">Deletar</button>
+                </td>`;
+                productList.appendChild(row);
+            });
+        }
+        const deleteProduct = async (id) => {
+
+            const response = await axios.delete(`http://192.168.15.165:5000/api/produto/${id}`, { headers: { 'Access-Control-Allow-Origin': '*' } });
+            const products = response.data;
+        }
+
+
+
+
+        // Carregar produtos ao carregar a página
+        window.addEventListener('load', () => loadProducts())
+    </script>
+
+</body>
+
+</html>

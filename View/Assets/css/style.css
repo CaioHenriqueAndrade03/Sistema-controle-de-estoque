@@ -1,0 +1,189 @@
+* {
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .img-logo-header {
+    width: 160px;
+  }
+  
+  .img-logo-body {
+    width: 100%;
+    height: calc(100vh - 3.5em - 1.6em);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .header, .header-nav {
+    background-color: purple;
+    justify-content: space-between;
+    padding: 0 10%;
+    height: 3.5em;
+    box-shadow: 1px 1px 4px gray;
+  }
+  
+  body {
+    background-color: mistyrose;
+    overflow: hidden;
+    margin: 0;
+    height: 100vh;
+  }
+  
+  footer {
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+    text-align: center;
+    font-size: 0.8em; 
+    height: 1.6em;
+  }
+  
+  .header-nav {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+  }
+  
+  .header-nav a {
+    text-decoration: none;
+    color: currentColor;
+    transition: 1s;
+    margin: 0 5px;
+  }
+  
+  .header-div {
+    background-color: purple;
+    color: black;
+  }
+  
+  .header-div a:hover {
+    color: white;
+  }
+  
+  .div-box{
+    width: 1000px;
+    background-color: plum;
+    margin: auto;
+    margin-top: 30px;
+    padding: 20px;
+    text-align: justify;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .div-title {
+    font-size: 5ch;
+    text-align: center;
+  }
+  
+  .div-text p {
+    font-size: 2ch;
+    margin-bottom: 10px;
+    margin-top: 20px;
+  }
+
+  .btn-createnew {   
+    font-size: 2ch;
+    margin-bottom: 5px;
+    margin-top: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 500px;
+    height: 50px;
+    font-weight: bold;
+    color: black;
+    background-color: purple;
+}
+
+.btn-createnew a{
+    text-decoration: none;
+    color: currentColor;
+    transition: 1s;
+    margin: 0 5px;
+}
+
+.btn-createnew:hover{
+    color: white;
+    text-decoration: none;
+    transition: 1s;
+}
+
+.btn-div{
+    margin: auto;
+    margin-top: 20px;
+    padding: 10px;
+    text-align: justify;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+
+.div-text {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+th, td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+
+th {
+  background-color: #f4f4f4;
+}
+
+td {
+  background-color: #fff;
+}
+
+tr:nth-child(even) td {
+  background-color: #f9f9f9;
+}
+
+.button-novos{
+  margin-right: 5px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.btn-detalhes {
+  background-color: #5bc0de;
+  color: white;
+}
+
+.btn-editar {
+  background-color: #5cb85c;
+  color: white;
+}
+
+.btn-deletar {
+  background-color: #d9534f;
+  color: white;
+}
+
+.button-novos:hover {
+  opacity: 0.8;
+}
+
+.button-novos a{
+    text-decoration: none;
+    color: currentColor;
+    transition: 1s;
+    margin: 0 5px;
+}

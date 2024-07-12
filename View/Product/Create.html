@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="../Assets/css/style.css">
+    <title>Criar Novo Produto</title>
+</head>
+
+<body>
+    <header>
+        <nav class="header-nav">
+            <div class="logo_header">
+                <img src="../Assets/Logo.png" class="img-logo-header">
+            </div>
+            <div class="header-div">
+                <a href="../Home/Index.html">Home</a>
+                <a href="../Product/Index.html">Products</a>
+                <a href="../Home/Contact.html">Contact</a>
+                <a href="../Home/About.html">About</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="div-box">
+        <h1 class="div-title">Criar Novo Produto</h1>
+        <div class="div-text">
+            <form id="create-product-form">
+                <div>
+                    <label for="product-name">Nome do Produto:</label>
+                    <input type="text" id="productname" name="product-name" required>
+                </div>
+                <div>
+                    <label for="product-quantity">Quantidade:</label>
+                    <input type="number" id="productquantity" name="product-quantity" required>
+                </div>
+                <div>
+                    <label for="product-price">Preço:</label>
+                    <input type="number" step="0.01" id="productprice" name="product-price" required>
+                </div>
+                <div>
+                    <button type="button" class="btn-createnew" onclick='incluir()'>Criar Produto</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <h5>Projeto alunos UVA ©2024</h5>
+    </footer>
+
+    <script>
+        const postProduct = async (nome, preco, quantidade) => {
+            const response = await axios.post(`http://192.168.15.165:5000/api/produto`, { nome: nome, preco: preco, quantidade: quantidade }, { headers: { 'Access-Control-Allow-Origin': '*' } });
+            return response;
+        }
+
+        const incluir = () => {
+            const nome = document.getElementById('productname').value;
+            const preco = eval(document.getElementById('productprice').value);
+            const quantidade = eval(document.getElementById('productquantity').value);
+            postProduct(nome, preco, quantidade).then((response) => {
+                window.location.href = 'Index.html';
+            });
+
+        }
+
+    </script>
+
+</body>
+
+</html>

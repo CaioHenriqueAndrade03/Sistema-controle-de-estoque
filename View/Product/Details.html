@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../Assets/css/style.css">
+    <title>Detalhes do Produto</title>
+</head>
+
+<body>
+    <header>
+        <nav class="header-nav">
+            <div class="logo_header">
+                <img src="../Assets/Logo.png" class="img-logo-header">
+            </div>
+            <div class="header-div">
+                <a href="../Home/Index.html">Home</a>
+                <a href="../Product/Index.html">Products</a>
+                <a href="../Home/Contact.html">Contact</a>
+                <a href="../Home/About.html">About</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="div-box">
+        <h1 class="div-title">Detalhes do Produto</h1>
+        <div class="div-text">
+            <p><strong>Nome:</strong> <span id="product-name"></span></p>
+            <p><strong>Quantidade:</strong> <span id="product-quantity"></span></p>
+            <p><strong>Preço:</strong> R$ <span id="product-price"></span></p>
+            <p><strong>Valor Total:</strong> R$ <span id="product-total"></span></p>
+        </div>
+    </div>
+
+    <footer>
+        <h5>Projeto alunos UVA ©2024</h5>
+    </footer>
+
+    <script>
+        function getQueryParams() {
+            const params = {};
+            window.location.search.substring(1).split('&').forEach(pair => {
+                const [key, value] = pair.split('=');
+                params[key] = decodeURIComponent(value);
+            });
+            return params;
+        }
+
+        function loadProductDetails() {
+            const loadProducts = async () => {
+                const response = await axios.get('http://192.168.15.165:5000/api/produto', { headers: { 'Access-Control-Allow-Origin': '*' } });
+                const products = response.data;
+                const productList = document.getElementById('product-list');
+            }
+        }
+        window.addEventListener('load', () => loadProducts())
+    </script>
+
+</body>
+
+</html>

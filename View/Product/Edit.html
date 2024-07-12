@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="../Assets/css/style.css">
+    <title>Editar Produto</title>
+</head>
+
+<body>
+    <header>
+        <nav class="header-nav">
+            <div class="logo_header">
+                <img src="../Assets/Logo.png" class="img-logo-header">
+            </div>
+            <div class="header-div">
+                <a href="../Home/Index.html">Home</a>
+                <a href="../Product/Index.html">Products</a>
+                <a href="../Home/Contact.html">Contact</a>
+                <a href="../Home/About.html">About</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="div-box">
+        <h1 class="div-title">Editar Produto</h1>
+        <div class="div-text">
+            <form id="edit-product-form">
+                <div>
+                    <label for="product-name">Nome do Produto:</label>
+                    <input type="text" id="product-name" name="product-name" required>
+                </div>
+                <div>
+                    <label for="product-quantity">Quantidade:</label>
+                    <input type="number" id="product-quantity" name="product-quantity" required>
+                </div>
+                <div>
+                    <label for="product-price">Preço:</label>
+                    <input type="number" step="0.01" id="product-price" name="product-price" required>
+                </div>
+                <div>
+                    <button type="button" class="btn-createnew">Salvar Alterações</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <h5>Projeto alunos UVA ©2024</h5>
+    </footer>
+
+    <script>
+
+        function getId() {
+            const param = window.location.search.split('=')[1];
+            return param;
+        }
+
+        let product = null;
+
+
+        const loadProducts = async (id) => {
+            const response = await axios.get(`http://192.168.15.165:5000/api/produto/${id}`, { headers: { 'Access-Control-Allow-Origin': '*' } });
+            product = response.data;
+            return product
+        }
+        function loadDetails() {
+            loadProducts(getId()).then(product => {
+                document.getElementById('product-name').value = product.nome;
+                document.getElementById('product-price').value = product.preco;
+                document.getElementById('product-quantity').value = product.quantidade;
+            })
+        }
+        window.addEventListener('load', () => loadDetails(product))
+
+        const putProduct = async (id, nome, preco, quantidade) => {
+            const response = await axios.put(`http://192.168.15.165:5000/api/produto/${id}`, { nome: nome, preco: preco, quantidade: quantidade }, { headers: { 'Access-Control-Allow-Origin': '*' } })
+        }
+        const incluir = () => {
+            const nome = document.getElementById('product-name').value;
+            const preco = eval(document.getElementById('product-price').value);
+            const quantidade = eval(document.getElementById('product-quantity').value);
+            putProduct(getId(), nome, preco, quantidade).then((response) => {
+                window.location.href = 'Index.html';
+            })
+        };
+
+        document.querySelector('.btn-createnew').addEventListener('click', incluir);
+
+    </script>
+
+</body>
+
+</html>
